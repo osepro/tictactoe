@@ -1,9 +1,10 @@
 import React from "react";
+import "../styles/button.css";
 
-const Button = () => {
+const Button = ({ boardItem }) => {
 	return (
-		<div>
-			<button>Hello</button>
+		<div className="mainButton">
+			<button className="playButton">{}</button>
 		</div>
 	);
 };

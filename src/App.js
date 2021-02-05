@@ -1,10 +1,12 @@
-import Button from "./components/Button";
+import Board from "./components/Board";
+import Header from "./containers/Header";
 import "./App.css";
 
 function App() {
 	return (
 		<div className="App">
-			<Button />
+			<Header game={""} />
+			<Board />
 		</div>
 	);
 }
