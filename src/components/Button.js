@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/button.css";
 
-const Button = ({ boardItem }) => {
+const Button = ({ boardItem, play }) => {
+	const [item, setItem] = useState("");
+	const [player, setPlayer] = useState("");
+
 	return (
 		<div className="mainButton">
-			<button className="playButton">{}</button>
+			<button className="playButton" onClick={() => setPlayer(boardItem)}>
+				{player}
+			</button>
 		</div>
 	);
 };
