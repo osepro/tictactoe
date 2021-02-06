@@ -2,9 +2,11 @@
 	margin: 2px;
 }
 .playButton {
-	padding: 2em;
 	background: #000000;
 	outline: none;
 	width: 120px;
 	height: 120px;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 70px;
 }
