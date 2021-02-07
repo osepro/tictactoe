@@ -10,3 +10,9 @@
 	font-weight: bold;
 	font-size: 70px;
 }
+input[value="X"] {
+	color: #ffa500;
+}
+input[value="0"] {
+	color: #0000ff;
+}
