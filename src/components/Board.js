@@ -4,7 +4,6 @@ import PlayerTurn from "./PlayerTurn";
 import "../styles/board.css";
 
 const items = new Array(9).fill(null);
-
 class Board extends Component {
 	constructor(props) {
 		super(props);
