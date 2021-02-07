@@ -1,9 +1,14 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 .mainBoard {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	justify-content: center;
 	align-items: stretch;
-	width: 30%;
+	width: 34%;
 }
