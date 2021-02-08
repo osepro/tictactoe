@@ -1,10 +1,15 @@
 import React from "react";
 import "../styles/button.css";
 
-const Button = ({ play }) => {
+const Button = ({ play, position }) => {
 	return (
 		<div className="mainButton">
-			<input type="button" onClick={play} className="playButton"></input>
+			<input
+				type="button"
+				onClick={play}
+				data-item={position}
+				className="playButton"
+			></input>
 		</div>
 	);
 };
