@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/button.css";
 
-const Button = ({ play, position }) => {
+const Button = ({ play, position, canplay, winshown }) => {
+	const [a, b, c] = winshown;
 	return (
 		<div className="mainButton">
 			<input
@@ -9,6 +10,13 @@ const Button = ({ play, position }) => {
 				onClick={play}
 				data-item={position}
 				className="playButton"
+				disabled={canplay}
+				style={{
+					background:
+						position === a || position === b || position === c
+							? "#00FF00"
+							: "#000000",
+				}}
 			></input>
 		</div>
 	);
