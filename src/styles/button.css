@@ -16,3 +16,12 @@ input[value="X"] {
 input[value="0"] {
 	color: #0000ff;
 }
+.resetBtn {
+	background-color: #990066;
+	padding: 1em;
+	color: #ffffff;
+	border: solid 1px #333333;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}

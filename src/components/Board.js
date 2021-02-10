@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import PlayerTurn from "./PlayerTurn";
+import Reset from "./Reset";
 import "../styles/board.css";
 
-const playBoard = new Array(9).fill(null);
+let playBoard = new Array(9).fill(null);
+let winner = "";
+let winvalue = [];
 
 class Board extends Component {
 	constructor(props) {
@@ -23,13 +26,18 @@ class Board extends Component {
 			playBoard[e.target.getAttribute("data-item")] = player;
 		}
 
-		if (this.handleWinning()) {
-			alert(`${player} WON`);
+		if (this.handleWinning() && !this.handleWinning().isDraw) {
+			winner = player;
+		}
+
+		if (this.handleWinning() && this.handleWinning().isDraw) {
+			winner = "Draw";
 		}
 	}
 	handleWinning = () => {
 		let board = [];
 		let isGameEnd = false;
+		let isDraw = false;
 
 		for (let j = 0; j < playBoard.length; j++) {
 			board = [...board, playBoard[j]];
@@ -57,20 +65,47 @@ class Board extends Component {
 				board[c] !== null
 			) {
 				isGameEnd = true;
+				winvalue = [a, b, c];
 			}
 		}
+
+		if (!board.includes(null)) {
+			isGameEnd = true;
+			isDraw = true;
+			return {
+				isDraw,
+			};
+		}
+
 		return isGameEnd;
+	};
+	getWinningResult = () => {
+		return winvalue;
+	};
+	resetGame = () => {
+		winner = "";
+		winvalue = [];
+		playBoard = new Array(9).fill(null);
+		this.setState({ player: "X" });
 	};
 	render() {
 		const { player } = this.state;
 		return (
 			<div className="main">
-				<PlayerTurn playsturn={player} />
+				{winner === "Draw" && <h1 style={{ color: "#ffa500" }}>{winner}</h1>}
+				{winner !== "Draw" && <PlayerTurn playsturn={player} winner={winner} />}
 				<div className="mainBoard">
 					{playBoard.map((_, index) => (
-						<Button key={index} position={index} play={this.setPlayer} />
+						<Button
+							key={index}
+							position={index}
+							play={this.setPlayer}
+							canplay={this.handleWinning()}
+							winshown={this.getWinningResult()}
+						/>
 					))}
 				</div>
+				{this.handleWinning() && <Reset reset={this.resetGame} />}
 			</div>
 		);
 	}
