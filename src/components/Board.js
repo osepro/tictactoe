@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Button from "./Button";
 import PlayerTurn from "./PlayerTurn";
 import Reset from "./Reset";
@@ -13,14 +13,32 @@ class Board extends Component {
 		super(props);
 		this.state = {
 			player: "X",
+			boarditem: [
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+			],
 		};
 		this.setPlayer = this.setPlayer.bind(this);
+		this.inputField = createRef();
 	}
 	setPlayer(e) {
-		const { player } = this.state;
+		const { player, boarditem } = this.state;
+		boarditem[e.target.getAttribute("data-item")] = {
+			player: player,
+			position: e.target.getAttribute("data-item"),
+		};
+
 		if (e.target.value === "") {
 			this.setState((prevState) => ({
 				player: prevState.player === "X" ? "0" : "X",
+				boarditem,
 			}));
 			e.target.value = player;
 			playBoard[e.target.getAttribute("data-item")] = player;
@@ -86,10 +104,23 @@ class Board extends Component {
 		winner = "";
 		winvalue = [];
 		playBoard = new Array(9).fill(null);
-		this.setState({ player: "X" });
+		this.setState({
+			player: "X",
+			boarditem: [
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+				{ player: "", position: null },
+			],
+		});
 	};
 	render() {
-		const { player } = this.state;
+		const { player, boarditem } = this.state;
 		return (
 			<div className="main">
 				{winner === "Draw" && <h1 style={{ color: "#ffa500" }}>{winner}</h1>}
@@ -102,6 +133,7 @@ class Board extends Component {
 							play={this.setPlayer}
 							canplay={this.handleWinning()}
 							winshown={this.getWinningResult()}
+							boarditem={boarditem}
 						/>
 					))}
 				</div>
