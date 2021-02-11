@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/button.css";
 
-const Button = ({ play, position, canplay, winshown }) => {
+const Button = ({ play, position, canplay, winshown, boarditem }) => {
 	const [a, b, c] = winshown;
 	return (
 		<div className="mainButton">
@@ -9,6 +9,7 @@ const Button = ({ play, position, canplay, winshown }) => {
 				type="button"
 				onClick={play}
 				data-item={position}
+				value={boarditem[position].player}
 				className="playButton"
 				disabled={canplay}
 				style={{
