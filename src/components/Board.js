@@ -13,17 +13,7 @@ class Board extends Component {
 		super(props);
 		this.state = {
 			player: "X",
-			boarditem: [
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-			],
+			boarditem: new Array(9).fill({ player: "", position: null }),
 		};
 		this.setPlayer = this.setPlayer.bind(this);
 		this.inputField = createRef();
@@ -41,6 +31,7 @@ class Board extends Component {
 				boarditem,
 			}));
 			e.target.value = player;
+			e.target.disabled = true;
 			playBoard[e.target.getAttribute("data-item")] = player;
 		}
 
@@ -106,17 +97,7 @@ class Board extends Component {
 		playBoard = new Array(9).fill(null);
 		this.setState({
 			player: "X",
-			boarditem: [
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-				{ player: "", position: null },
-			],
+			boarditem: new Array(9).fill({ player: "", position: null }),
 		});
 	};
 	render() {
