@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/button.css";
+import PropTypes from "prop-types";
 
 const Button = ({ play, position, canplay, winshown, boarditem }) => {
 	const [a, b, c] = winshown;
@@ -21,6 +22,14 @@ const Button = ({ play, position, canplay, winshown, boarditem }) => {
 			></input>
 		</div>
 	);
+};
+
+Button.propTypes = {
+	play: PropTypes.func,
+	position: PropTypes.number,
+	winshown: PropTypes.array,
+	canplay: PropTypes.bool,
+	boarditem: PropTypes.array,
 };
 
 export default Button;

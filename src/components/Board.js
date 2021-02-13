@@ -1,5 +1,7 @@
 import React, { Component, createRef } from "react";
 import Button from "./Button";
+import playaudio from "../sound/play.mp3";
+import winneraudio from "../sound/winner.mp3";
 import PlayerTurn from "./PlayerTurn";
 import Reset from "./Reset";
 import "../styles/board.css";
@@ -37,11 +39,16 @@ class Board extends Component {
 
 		if (this.handleWinning() && !this.handleWinning().isDraw) {
 			winner = player;
+			let playSound = new Audio(winneraudio);
+			playSound.play();
 		}
 
 		if (this.handleWinning() && this.handleWinning().isDraw) {
 			winner = "Draw";
 		}
+
+		let playSound = new Audio(playaudio);
+		playSound.play();
 	}
 	handleWinning = () => {
 		let board = [];
