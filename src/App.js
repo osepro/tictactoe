@@ -1,5 +1,5 @@
-import Board from "./components/Board";
-import Header from "./containers/Header";
+import Board from "components/Board";
+import Header from "containers/Header";
 import "./App.css";
 
 function App() {
