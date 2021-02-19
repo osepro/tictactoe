@@ -4,7 +4,10 @@ import playaudio from "../sound/play.mp3";
 import winneraudio from "sound/winner.mp3";
 import PlayerTurn from "components/PlayerTurn";
 import Reset from "components/Reset";
+import WinnerBoard from "components/WinnerBoard";
+import { connect } from "react-redux";
 import "../styles/board.css";
+import * as actions from "actions";
 
 let playBoard = new Array(9).fill(null);
 let winner = "";
@@ -44,6 +47,7 @@ class Board extends Component {
 
 		if (this.handleWinning() && !this.handleWinning().isDraw) {
 			winner = player;
+			this.props.saveWinners(player);
 			this.playSoundFn(winneraudio);
 		}
 
@@ -112,8 +116,10 @@ class Board extends Component {
 	};
 	render() {
 		const { player, boarditem } = this.state;
+		const { savewinner } = this.props;
 		return (
 			<div className="main">
+				{savewinner.length > 0 && <WinnerBoard winnerboard={savewinner} />}
 				{winner === "Draw" && <h1 style={{ color: "#ffa500" }}>{winner}</h1>}
 				{winner !== "Draw" && <PlayerTurn playsturn={player} winner={winner} />}
 				<div className="mainBoard">
@@ -134,4 +140,10 @@ class Board extends Component {
 	}
 }
 
-export default Board;
+const mapStateToProps = (state) => {
+	return {
+		savewinner: state.winner,
+	};
+};
+
+export default connect(mapStateToProps, actions)(Board);
