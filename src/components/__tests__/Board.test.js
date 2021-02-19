@@ -2,11 +2,16 @@ import React from "react";
 import { mount } from "enzyme";
 import Board from "components/Board";
 import Button from "components/Button";
+import Root from "Root";
 
 let wrapped;
 
 beforeEach(() => {
-	wrapped = mount(<Board />);
+	wrapped = mount(
+		<Root>
+			<Board />
+		</Root>
+	);
 });
 
 afterEach(() => {

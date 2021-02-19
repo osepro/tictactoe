@@ -1,0 +1,13 @@
+.mainwinnerboard {
+	width: 200px;
+	position: fixed;
+	left: 2em;
+	background: lightgrey;
+}
+.winnerlist {
+	padding: 0;
+}
+.winnerlist li {
+	list-style: none;
+	padding: 5px;
+}
