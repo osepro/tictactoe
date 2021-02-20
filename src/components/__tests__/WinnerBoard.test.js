@@ -8,11 +8,18 @@ describe("test winnerboard", () => {
 		data = ["X", "0"];
 		div = shallow(<WinnerBoard winnerboard={data} />);
 	});
-	it("contains li of winners", () => {
-		expect(div.find("li").first().text()).toEqual("X Won Game 1");
-	});
 
 	it("contains right number of li", () => {
-		expect(div.find("li").length).toBe(2);
+		expect(div.find("li").length).toEqual(2);
+	});
+
+	it("contains all text", () => {
+		expect(div.render().text()).toContain("Game History");
+		expect(div.render().text()).toContain("X Won Game 1");
+		expect(div.render().text()).toContain("0 Won Game 2");
+	});
+
+	it("contains li of winners", () => {
+		expect(div.find("li").first().text()).toEqual("X Won Game 1");
 	});
 });

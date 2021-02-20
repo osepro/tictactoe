@@ -1,10 +1,18 @@
 import React from "react";
+import { shallow } from "enzyme";
 import ReactDOM from "react-dom";
 import Header from "containers/Header";
 
+let wrapped;
+
+beforeEach(() => {
+	wrapped = shallow(<Header />);
+});
+
 it("shows TIC TAC TOE", () => {
-	const div = document.createElement("div");
-	ReactDOM.render(<Header />, div);
-	expect(div.innerHTML).toContain("TIC TAC TOE");
-	ReactDOM.unmountComponentAtNode(div);
+	expect(wrapped).toMatchSnapshot();
+});
+
+it("containers header title", () => {
+	expect(wrapped.render().text()).toContain("TIC TAC TOE");
 });
