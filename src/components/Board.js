@@ -4,6 +4,7 @@ import playaudio from "../sound/play.mp3";
 import winneraudio from "sound/winner.mp3";
 import PlayerTurn from "components/PlayerTurn";
 import Reset from "components/Reset";
+import MuteButton from "components/MuteButton";
 import WinnerBoard from "components/WinnerBoard";
 import { connect } from "react-redux";
 import "../styles/board.css";
@@ -19,6 +20,7 @@ class Board extends Component {
 		this.state = {
 			player: "X",
 			boarditem: new Array(9).fill({ player: "", position: null }),
+			mute: false,
 		};
 		this.setPlayer = this.setPlayer.bind(this);
 		this.inputField = createRef();
@@ -29,7 +31,7 @@ class Board extends Component {
 		playSound.play();
 	};
 	setPlayer(e) {
-		const { player, boarditem } = this.state;
+		const { player, boarditem, mute } = this.state;
 		boarditem[e.target.getAttribute("data-item")] = {
 			player: player,
 			position: e.target.getAttribute("data-item"),
@@ -48,14 +50,14 @@ class Board extends Component {
 		if (this.handleWinning() && !this.handleWinning().isDraw) {
 			winner = player;
 			this.props.saveWinners(player);
-			this.playSoundFn(winneraudio);
+			if (mute) this.playSoundFn(winneraudio);
 		}
 
 		if (this.handleWinning() && this.handleWinning().isDraw) {
 			winner = "Draw";
 		}
 
-		this.playSoundFn(playaudio);
+		if (mute) this.playSoundFn(playaudio);
 	}
 	handleWinning = () => {
 		let board = [];
@@ -114,8 +116,13 @@ class Board extends Component {
 			boarditem: new Array(9).fill({ player: "", position: null }),
 		});
 	};
+	muteGame = () => {
+		this.setState((prevState) => ({
+			mute: !prevState.mute,
+		}));
+	};
 	render() {
-		const { player, boarditem } = this.state;
+		const { player, boarditem, mute } = this.state;
 		const { savewinner } = this.props;
 		return (
 			<div className="main">
@@ -134,7 +141,10 @@ class Board extends Component {
 						/>
 					))}
 				</div>
-				{this.handleWinning() && <Reset reset={this.resetGame} />}
+				<div className="btnBottom">
+					<MuteButton mute={this.muteGame} sound={mute} />
+					{this.handleWinning() && <Reset reset={this.resetGame} />}
+				</div>
 			</div>
 		);
 	}

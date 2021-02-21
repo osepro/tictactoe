@@ -36,7 +36,7 @@ it("sound play working", () => {
 			<Board />
 		</Root>
 	);
-	//let instance = wrapper.instance().dive();
+	//let instance = wrapper.instance().handleWinning();
 	//console.log(instance.handleWinning());
 	//console.log(wrapper.instance().handleWinning());
 	//expect(wrapper.dive().instance().playSoundFn(winneraudio)).toBeTruthy();
