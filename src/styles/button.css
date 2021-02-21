@@ -24,4 +24,5 @@ input[value="0"] {
 	border-radius: 5px;
 	font-weight: bold;
 	cursor: pointer;
+	margin-left: 5px;
 }
