@@ -11,3 +11,10 @@
 	list-style: none;
 	padding: 5px;
 }
+
+.winnerlist li.leader {
+	background: yellowgreen;
+	color: white;
+	font-weight: bold;
+	padding: 1em;
+}
