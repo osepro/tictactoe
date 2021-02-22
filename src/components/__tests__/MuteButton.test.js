@@ -1,6 +1,8 @@
 import React from "react";
 import MuteButton from "components/MuteButton";
 import { shallow } from "enzyme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeMute, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 describe("Default mute button", () => {
 	let wrapped;
@@ -9,7 +11,8 @@ describe("Default mute button", () => {
 		wrapped = shallow(<MuteButton mute={btnClicked} sound={false} />);
 	});
 	it("contains mute button", () => {
-		expect(wrapped.find("button").text()).toEqual("Unmute");
+		const unmute = <FontAwesomeIcon icon={faVolumeMute} />;
+		expect(wrapped.find(unmute)).toBeTruthy();
 	});
 
 	it("button click function called", () => {
@@ -25,7 +28,8 @@ describe("Default unmute button", () => {
 		wrapped = shallow(<MuteButton mute={btnClicked} sound={true} />);
 	});
 	it("contains unmute button", () => {
-		expect(wrapped.find("button").text()).toEqual("Mute");
+		const mute = <FontAwesomeIcon icon={faVolumeUp} />;
+		expect(wrapped.find(mute)).toBeTruthy();
 	});
 
 	it("button click function called", () => {
