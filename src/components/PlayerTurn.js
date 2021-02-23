@@ -5,7 +5,7 @@ const PlayerTurn = ({ playsturn, winner }) => {
 		<h1>
 			{winner === "Draw" && <span style={{ color: "#ffa500" }}>DRAW</span>}
 			{winner === "" ? (
-				<span>
+				<span className="playturname">
 					Player{" "}
 					<span
 						style={{ color: `${playsturn === "X" ? "#ffa500" : "#0000FF"}` }}
@@ -15,7 +15,7 @@ const PlayerTurn = ({ playsturn, winner }) => {
 					your turn
 				</span>
 			) : (
-				<span>
+				<span className="winnername">
 					PLAYER{" "}
 					<span style={{ color: `${winner === "X" ? "#ffa500" : "#0000FF"}` }}>
 						{winner}
