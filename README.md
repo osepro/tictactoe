@@ -2,6 +2,11 @@
 
 An implementation of the tictactoe game in React.
 
+# Features
+
+Game history
+Game Leader Board
+
 ## How to run
 
 Clone the git repository. In the project directory, you can run:

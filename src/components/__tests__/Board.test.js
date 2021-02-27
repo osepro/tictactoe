@@ -28,4 +28,16 @@ describe("mount board component", () => {
 			""
 		);
 	});
+
+	it("can find winner on button", () => {
+		expect(wrapped.find(Button).first().find("input").prop("disabled")).toEqual(
+			false
+		);
+	});
+
+	it("has black background button", () => {
+		expect(
+			wrapped.find(Button).first().find("input").prop("style")
+		).toHaveProperty("background", "#000000");
+	});
 });
